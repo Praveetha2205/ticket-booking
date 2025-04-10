@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+           * {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #444;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  height: 100vh;
+  margin: 0;
+}
+
+        h1 {
+  color: rgb(179, 131, 226);
+  font-size: 10rem;
+  text-align: center;
+  opacity: 0.8;
+  
+}
+    .form-control{
+        width: 500px;
+        height: 100px;
+       font-size: xx-large;
+        font-weight: bold;
+        
+    }
+    .todo-box{
+        width: 500px;
+        height: 50px;
+        margin: 10px 0;
+       font-size: 18px;
+        font-weight: bold;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .todo-completed{
+        text-decoration: line-through;
+        color: gray;
+    }
+    .remove-btn{
+        color: red;
+        cursor: pointer;
+    }
+
+    .completed-btn{
+        color: green;
+        cursor: pointer;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <h1>todos</h1>
+    <input type="text" placeholder="Enter Your todo" class="form-control" id="todo-input">
+    <div id="todo-container"></div>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#todo-input").on("keydown",function(event){
+                if(event.key=="Enter"&& $(this).val().trim() !==""){
+
+                    let inp=$(this).val()
+                    let tododiv=$('<div class = "todo-box"></div>')
+                    let todocontent=$('<span></span').text(inp)
+                    let removebtn=$('<button class = "remove-btn">Remove</button>')
+                    let completedbtn=$('<button class = "completed-btn ">Completed</button>')
+
+                   completedbtn.on('click',function(){
+                    todocontent.toggleClass('todo-completed')
+                   })
+
+                   removebtn.on('click',function(){
+                    tododiv.remove();
+                   })
+
+                   tododiv.append(todocontent).append(removebtn).append(completedbtn)
+
+                   $("#todo-container").append(tododiv)
+
+                   $(this).val('')
+                }
+            })
+            
+        })
+    </script>
+
+    
+</body>
+</html>
